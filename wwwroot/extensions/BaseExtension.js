@@ -1,3 +1,5 @@
+/// import * as Autodesk from "@types/forge-viewer";
+
 export class BaseExtension extends Autodesk.Viewing.Extension {
     constructor(viewer, options) {
         super(viewer, options);
@@ -19,8 +21,6 @@ export class BaseExtension extends Autodesk.Viewing.Extension {
         this.viewer.removeEventListener(Autodesk.Viewing.ISOLATE_EVENT, this._onIsolationChanged);
         return true;
     }
-
-    onToolbarCreated() {}
 
     onModelLoaded(model) {}
 

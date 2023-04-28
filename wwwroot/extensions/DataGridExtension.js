@@ -1,3 +1,5 @@
+/// import * as Autodesk from "@types/forge-viewer";
+
 import { BaseExtension } from './BaseExtension.js';
 import { DataGridPanel } from './DataGridPanel.js';
 
@@ -36,10 +38,15 @@ class DataGridExtension extends BaseExtension {
     onToolbarCreated() {
         this._panel = new DataGridPanel(this, 'dashboard-datagrid-panel', 'Data Grid', { x: 10, y: 10 });
         this._button = this.createToolbarButton('dashboard-datagrid-button', 'https://img.icons8.com/small/32/activity-grid.png', 'Show Data Grid');
+        let test=document.getElementsByClassName("datagrid-container");
+        let test_father=document.getElementById("test");
+        test_father.appendChild(test[0])
         this._button.onClick = () => {
-            this._panel.setVisible(!this._panel.isVisible());
+            //this._panel.setVisible(!this._panel.isVisible());
             this._button.setState(this._panel.isVisible() ? Autodesk.Viewing.UI.Button.State.ACTIVE : Autodesk.Viewing.UI.Button.State.INACTIVE);
-            if (this._panel.isVisible() && this.viewer.model) {
+            console.log(test)
+            test[0].classList.toggle("open");
+            if (this.viewer.model) {
                 this.update();
             }
         };
