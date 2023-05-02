@@ -62,6 +62,7 @@ class DataGridExtension extends BaseExtension {
     async update() {
         const dbids = await this.findLeafNodes(this.viewer.model);
         this._panel.update(this.viewer.model, dbids);
+
     }
 }
 

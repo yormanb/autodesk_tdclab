@@ -57,10 +57,18 @@ export class DataGridPanel extends Autodesk.Viewing.UI.DockingPanel {
             columns: DATAGRID_CONFIG.columns,
             groupBy: DATAGRID_CONFIG.groupBy,
             rowClick: (e, row) => DATAGRID_CONFIG.onRowClick(row.getData(), this.extension.viewer)
+            
+
         });
+
+        const export_botton =document.getElementById('export');
+        export_botton.addEventListener('click',()=>{
+        this.table.download("csv", "data.csv");
+})
     }
 
     update(model, dbids) {
+        this.table.clearData();
         model.getBulkProperties(dbids, { propFilter: DATAGRID_CONFIG.requiredProps }, (results) => {
             this.table.replaceData(results.map((result) => DATAGRID_CONFIG.createRow(result.dbId, result.name, result.properties)));
         }, (err) => {
